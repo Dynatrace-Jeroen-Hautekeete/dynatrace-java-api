@@ -28,6 +28,17 @@ public class EntityList {
 		}
 	}
 
+	public static EntityList load(ApiClient ac,String selector,String from) {
+		// DEBUG
+		// System.out.println("loading entities for selector: "+selector);
+		
+		try  {
+			return new EntityList(MonitoredEntities.getEntities(ac,selector,from,null,null,null));
+		} catch (Exception e) {
+			return new EntityList();
+		}
+	}
+	
 	protected EntityList(JSONArray aentities) {
 		
 		// DEBUG
@@ -56,5 +67,9 @@ public class EntityList {
 	
 	public boolean hasEntities() {
 		return ((entities!=null) && (entities.size()>0));
+	}
+	
+	public int size() {
+		return (entities==null ? 0 : entities.size());
 	}
 }
