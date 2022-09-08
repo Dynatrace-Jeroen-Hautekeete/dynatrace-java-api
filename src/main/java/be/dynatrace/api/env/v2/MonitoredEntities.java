@@ -59,4 +59,40 @@ public class MonitoredEntities {
 		return ac.executeJsonGetRequest(ENTITIES+"/"+entityid, params);
 	}
 
+	public static JSONArray getEntitytypes(ApiClient ac,String selector,String from, String to,String[] fields,String sort) throws Exception {
+		Map<String,List<String>> params=new HashMap<String,List<String>>();	
+
+		List<String> pselector=new ArrayList<String>();
+		pselector.add(selector);
+		params.put(ENTITYSELECTOR, pselector);
+		
+		if (from!=null) {
+			List<String> pfrom=new ArrayList<String>();
+			pfrom.add(from);
+			params.put(FROM, pfrom);			
+		}
+		if (to!=null) {
+			List<String> pto=new ArrayList<String>();
+			pto.add(to);
+			params.put(TO, pto);			
+		}
+		if ((fields!=null)&&(fields.length>0)) {
+			List<String> pfields=new ArrayList<String>();
+			pfields.add(ApiUtil.arrayToCsv(fields));
+			params.put(FIELDS, pfields);			
+		}
+		if (sort!=null) {
+			List<String> psort=new ArrayList<String>();
+			psort.add(sort);
+			params.put(TO, psort);			
+		}
+		
+		return ac.executePagedGetRequest(ENTITIES, params, "entities");
+	}
+
+	public static JSONObject getEntitytype(ApiClient ac, String entitytype) throws Exception {
+		Map<String,List<String>> params=new HashMap<String,List<String>>();				
+		return ac.executeJsonGetRequest(ENTITYTYPES+"/"+entitytype, params);
+	}
+	
 }
