@@ -30,6 +30,19 @@ public class SettingsObjectList {
 		}
 	}
 
+	public static SettingsObjectList load(ApiClient ac,String schema) {
+		// DEBUG
+		//System.out.println("loading objects for "+ApiUtil.arrayToCsv(schemas)+":"+ApiUtil.arrayToCsv(scopes));
+		
+		try  {
+			return new SettingsObjectList(SettingsObjects.getSettingsObjects(ac,schema));
+		} catch (Exception e) {
+			// DEBUG
+			e.printStackTrace(System.err);
+			return new SettingsObjectList();
+		}
+	}
+	
 	protected SettingsObjectList(JSONArray objects) {
 		
 		// DEBUG

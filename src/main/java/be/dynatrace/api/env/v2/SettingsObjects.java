@@ -36,6 +36,20 @@ public class SettingsObjects {
 		return ac.executePagedGetRequest(SETTINGSOBJECTS, params, "items");
 	}
 
+	public static JSONArray getSettingsObjects(ApiClient ac,String schema) throws Exception {
+		Map<String,List<String>> params=new HashMap<String,List<String>>();	
+		
+		List<String> schemaids=new ArrayList<String>();
+		schemaids.add(schema);
+		params.put(SCHEMAIDS, schemaids);
+				
+		List<String> fieldvalues=new ArrayList<String>();
+		fieldvalues.add(ApiUtil.arrayToCsv(new String[] {"objectId","value","scope","schemaId"}));
+		params.put(FIELDS, fieldvalues);
+
+		return ac.executePagedGetRequest(SETTINGSOBJECTS, params, "items");
+	}
+		
 	public static JSONObject getSettingsObject(ApiClient ac, String objectid) throws Exception {
 		Map<String,List<String>> params=new HashMap<String,List<String>>();				
 		return ac.executeJsonGetRequest(SETTINGSOBJECTS+"/"+objectid, params);
