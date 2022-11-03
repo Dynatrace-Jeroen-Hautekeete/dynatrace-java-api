@@ -56,8 +56,11 @@ public class SettingsObjectList {
 			items.put(sitem.getObjectid(),sitem);
 			
 			//DEBUG
-			System.out.println(sitem.getObjectid()+" :: "+sitem.getScope()+" :: "+sitem.getSchemaid()+" :: "+sitem.getValue());
+			// System.out.println(sitem.getObjectid()+" :: "+sitem.getScope()+" :: "+sitem.getSchemaid()+" :: "+sitem.getValue());
+			//System.out.println(sitem.getObjectid()+" :: "+sitem.getScope()+" :: "+sitem.getSchemaid());
+			System.out.print(".");
 		});				
+		System.out.println();
 	}
 
 

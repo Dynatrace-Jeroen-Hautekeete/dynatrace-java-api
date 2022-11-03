@@ -96,8 +96,11 @@ public class ApiClient {
 		this.url=p.getProperty("url");
 		this.token=p.getProperty("token");	
 		this.port=p.getProperty("port","443");	
+		if (p.containsKey("mapping")) {
+			this.environment="/"+p.getProperty("mapping");
+		}
 		if (p.containsKey("env")) {
-			this.environment="/e/"+p.getProperty("env");
+			this.environment+="/e/"+p.getProperty("env");
 		}
 		if (p.containsKey("dtcookie")) {
 			this.customcookie=p.getProperty("dtcookie");
